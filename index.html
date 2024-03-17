@@ -7,17 +7,22 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-image: url('https://s1.pearlcdn.com/TW/Upload/thumbnail/2024/9FIJ2EMXMQ55VBF720240214151849536.400x225.jpg'); /* 替换为你的背景图片路径 */
+            background-size: cover;
+            background-position: center;
         }
 
         .content {
             text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* 添加半透明的背景色 */
+            padding: 20px;
+            border-radius: 10px;
         }
 
         h1 {
@@ -42,13 +47,27 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        #photo-container {
+            margin-top: 20px;
+        }
+
+        #photo-container img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
 <div class="content">
-    <h1>網站正在努力恢復中</h1>
-    <p>請稍等片刻，我們正在處理問題。</p>
+    <h1>遊戲正在加載中</h1>
+    <p>請稍等片刻，我們正在處理問題!</p>
     <div class="loader"></div>
+
+    <div id="photo-container">
+
+    </div>
 </div>
 </body>
 </html>
