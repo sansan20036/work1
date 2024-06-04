@@ -152,6 +152,7 @@
     <div id="start-screen">
         <h2>歡迎來到跑酷遊戲！</h2>
         <p>使用↑↓鍵控制角色上下移動，躲避障礙物，收集加分道具，盡情奔跑吧！</p>
+        <p>按下score play game！!</p>
     </div>
 
     <div id="game-container">
@@ -194,12 +195,14 @@
     // 每次按下上下鍵移動
     document.addEventListener('keydown', moveRunner);
 
+    // ... 其他代码 ...
+
     // 創建障礙物
     function createObstacle() {
         const obstacle = document.createElement('div');
         obstacle.classList.add('obstacle');
         obstacle.style.right = '0px';
-        obstacle.style.top = `${Math.floor(Math.random() * 3) * 30}px`;
+        obstacle.style.top = `${Math.floor(Math.random() * 5) * 30}px`; // 修改：随机生成 5 个位置，包括最底部
         runnerGame.appendChild(obstacle);
         obstacles.push(obstacle);
     }
@@ -209,7 +212,7 @@
         const powerup = document.createElement('div');
         powerup.classList.add('powerup');
         powerup.style.right = '0px';
-        powerup.style.top = `${Math.floor(Math.random() * 3) * 30}px`;
+        powerup.style.top = `${Math.floor(Math.random() * 5) * 30}px`; // 修改：随机生成 5 个位置，包括最底部
         runnerGame.appendChild(powerup);
         powerups.push(powerup);
     }
@@ -219,7 +222,7 @@
         const bonus = document.createElement('div');
         bonus.classList.add('bonus');
         bonus.style.right = '0px';
-        bonus.style.top = `${Math.floor(Math.random() * 3) * 30}px`;
+        bonus.style.top = `${Math.floor(Math.random() * 5) * 30}px`; // 修改：随机生成 5 个位置，包括最底部
         runnerGame.appendChild(bonus);
         bonuses.push(bonus);
     }
@@ -386,7 +389,7 @@
             moveItems(powerups);
             moveItems(bonuses);
             checkCollision();
-            speed += 0.002; // 遊戲進行中逐漸加速
+            speed += 0.0015; // 遊戲進行中逐漸加速
             requestAnimationFrame(gameLoop);
         }
     }
