@@ -48,14 +48,98 @@
             100% { transform: rotate(360deg); }
         }
 
-        #photo-container {
+        #game-container {
             margin-top: 20px;
         }
 
-        #photo-container img {
-            max-width: 100%;
-            height: auto;
+        #runner-game {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            border: 2px solid #333;
+        }
+
+        .runner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            /* 更改玩家的外觀，例如使用圖片 */
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKEgB1iujPXolSvCCGoqyabEI17TzlT7oiaw&s'); /* 替换为你的玩家图片路径 */
+            background-size: cover;
+            bottom: 0;
+            left: 10px;
+        }
+
+        .obstacle {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            /* 更改障礙物的外觀，例如使用圖片 */
+            background-image: url('https://img.lovepik.com/free-png/20211207/lovepik-prohibition-of-obstacles-png-image_401378948_wh1200.png'); /* 替换为你的障礙物图片路径 */
+            background-size: cover;
+            bottom: 0;
+        }
+
+        .powerup {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            /* 更改回血道具的外觀，例如使用圖片 */
+            background-image: url('data:image/jpeg;base64,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'); /* 替换为你的回血道具图片路径 */
+            background-size: cover;
+            bottom: 0;
+        }
+
+        .bonus {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            /* 更改加分道具的外觀，例如使用圖片 */
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJl_xjkeqjU6PvCyvVJVdFe4vHkGgCKViJ5A&s');
+            background-size: cover;
+            bottom: 0;
+        }
+
+        #game-over {
+            display: none;
+            color: red;
+            font-weight: bold;
+        }
+
+        #start-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 1;
+        }
+
+        #start-screen h2 {
+            font-size: 2em;
             margin-bottom: 10px;
+        }
+
+        #start-screen p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        #start-button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
         }
     </style>
 </head>
@@ -65,9 +149,275 @@
     <p>請稍等片刻，我們正在處理問題!</p>
     <div class="loader"></div>
 
-    <div id="photo-container">
+    <div id="start-screen">
+        <h2>歡迎來到跑酷遊戲！</h2>
+        <p>使用↑↓鍵控制角色上下移動，躲避障礙物，收集加分道具，盡情奔跑吧！</p>
+    </div>
 
+    <div id="game-container">
+        <div id="runner-game">
+            <div class="runner" id="runner"></div>
+        </div>
+        <p id="score">Score: 0</p>
+        <p id="lives">HP: 3</p>
+        <p id="game-over">遊戲結束！按下space重新開始</p>
     </div>
 </div>
+
+<script>
+    const runnerGame = document.getElementById('runner-game');
+    const runner = document.getElementById('runner');
+    const scoreElement = document.getElementById('score');
+    const livesElement = document.getElementById('lives');
+    const gameOverElement = document.getElementById('game-over');
+    const startScreen = document.getElementById('start-screen');
+    // const startButton = document.getElementById('start-button'); // 不需要了
+
+    let score = 0;
+    let gameRunning = false;
+    let speed = 2;
+    let lives = 3;
+    let obstacles = [];
+    let powerups = [];
+    let bonuses = [];
+
+    // 移動功能
+    function moveRunner(event) {
+        const runnerTop = parseInt(window.getComputedStyle(runner).getPropertyValue('top'));
+        if (event.key === 'ArrowUp' && runnerTop > 0) {
+            runner.style.top = `${runnerTop - 30}px`;
+        } else if (event.key === 'ArrowDown' && runnerTop < 120) {
+            runner.style.top = `${runnerTop + 30}px`;
+        }
+    }
+
+    // 每次按下上下鍵移動
+    document.addEventListener('keydown', moveRunner);
+
+    // 創建障礙物
+    function createObstacle() {
+        const obstacle = document.createElement('div');
+        obstacle.classList.add('obstacle');
+        obstacle.style.right = '0px';
+        obstacle.style.top = `${Math.floor(Math.random() * 3) * 30}px`;
+        runnerGame.appendChild(obstacle);
+        obstacles.push(obstacle);
+    }
+
+    // 創建回命道具
+    function createPowerup() {
+        const powerup = document.createElement('div');
+        powerup.classList.add('powerup');
+        powerup.style.right = '0px';
+        powerup.style.top = `${Math.floor(Math.random() * 3) * 30}px`;
+        runnerGame.appendChild(powerup);
+        powerups.push(powerup);
+    }
+
+    // 創建加分道具
+    function createBonus() {
+        const bonus = document.createElement('div');
+        bonus.classList.add('bonus');
+        bonus.style.right = '0px';
+        bonus.style.top = `${Math.floor(Math.random() * 3) * 30}px`;
+        runnerGame.appendChild(bonus);
+        bonuses.push(bonus);
+    }
+
+    // 移動物體（障礙物和道具）
+    function moveItems(items) {
+        items.forEach((item, index) => {
+            let itemRight = parseInt(window.getComputedStyle(item).getPropertyValue('right'));
+            if (itemRight > 330) {
+                item.remove();
+                items.splice(index, 1);
+            } else {
+                item.style.right = `${itemRight + speed}px`;
+            }
+        });
+    }
+
+    // 碰撞檢測
+    function checkCollision() {
+        const runnerRect = runner.getBoundingClientRect();
+
+        // 障礙物碰撞檢測
+        obstacles.forEach((obstacle, index) => {
+            const obstacleRect = obstacle.getBoundingClientRect();
+            if (
+                runnerRect.right > obstacleRect.left &&
+                runnerRect.left < obstacleRect.right &&
+                runnerRect.bottom > obstacleRect.top &&
+                runnerRect.top < obstacleRect.bottom
+            ) {
+                lives--;
+                livesElement.textContent = `HP: ${lives}`;
+                obstacle.remove();
+                obstacles.splice(index, 1);
+                if (lives === 0) {
+                    gameRunning = false;
+                    gameOverElement.style.display = 'block';
+                }
+            }
+        });
+
+        // 回命道具碰撞檢測
+        powerups.forEach((powerup, index) => {
+            const powerupRect = powerup.getBoundingClientRect();
+            if (
+                runnerRect.right > powerupRect.left &&
+                runnerRect.left < powerupRect.right &&
+                runnerRect.bottom > powerupRect.top &&
+                runnerRect.top < powerupRect.bottom
+            ) {
+                if (lives < 3) { // 只有在生命少于3的时候才出现回血道具
+                    lives++;
+                    livesElement.textContent = `HP: ${lives}`;
+                }
+                powerup.remove();
+                powerups.splice(index, 1);
+            }
+        });
+
+        // 加分道具碰撞檢測
+        bonuses.forEach((bonus, index) => {
+            const bonusRect = bonus.getBoundingClientRect();
+            if (
+                runnerRect.right > bonusRect.left &&
+                runnerRect.left < bonusRect.right &&
+                runnerRect.bottom > bonusRect.top &&
+                runnerRect.top < bonusRect.bottom
+            ) {
+                score += 5;
+                scoreElement.textContent = `score: ${score}`;
+                bonus.remove();
+                bonuses.splice(index, 1);
+            }
+        });
+    }
+
+    // 檢查道具是否重疊
+    function checkItemOverlap(newItem, items) {
+        const newItemRect = newItem.getBoundingClientRect();
+        const runnerRect = runner.getBoundingClientRect(); // 检查与玩家角色的重叠
+
+        // 检查与其他道具的重叠
+        for (const item of items) {
+            const itemRect = item.getBoundingClientRect();
+            if (
+                newItemRect.right > itemRect.left &&
+                newItemRect.left < itemRect.right &&
+                newItemRect.bottom > itemRect.top &&
+                newItemRect.top < itemRect.bottom
+            ) {
+                return true;
+            }
+        }
+
+        // 检查与玩家角色的重叠
+        if (
+            newItemRect.right > runnerRect.left &&
+            newItemRect.left < runnerRect.right &&
+            newItemRect.bottom > runnerRect.top &&
+            newItemRect.top < runnerRect.bottom
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    // 檢查是否越過障礙物
+    function checkObstaclePassed(obstacle) {
+        const obstacleRight = parseInt(window.getComputedStyle(obstacle).getPropertyValue('right'));
+        if (obstacleRight < 0) {
+            score++;
+            scoreElement.textContent = `score: ${score}`;
+            obstacle.remove();
+            return true;
+        }
+        return false;
+    }
+
+    // 遊戲主循環
+    function gameLoop() {
+        if (gameRunning) {
+            // 根據遊戲時間調整出現機率
+            let obstacleChance = 0.02 + (score / 100); // 障礙物出現機率稍微提升
+            let powerupChance = 0.005 + (score / 450); // 回血道具出現機率降低
+            let bonusChance = 0.002 + (score / 300); // 加分道具出現機率降低
+
+            // 控制出現頻率，使道具更分散
+            if (Math.random() < obstacleChance) {
+                if (obstacles.length < 3) { // 最多只允許存在兩個障礙物
+                    createObstacle();
+                    // 檢查新創建的障礙物是否与其他道具重疊
+                    if (checkItemOverlap(obstacles[obstacles.length - 1], powerups.concat(bonuses))) {
+                        obstacles[obstacles.length - 1].remove();
+                        obstacles.pop();
+                    }
+                }
+            }
+            if (Math.random() < powerupChance && powerups.length < 1 && lives < 3) { // 最多只允許存在一個回血道具，且生命值小于3时才出现
+                createPowerup();
+                // 檢查新創建的回血道具是否与其他道具重疊
+                if (checkItemOverlap(powerups[powerups.length - 1], obstacles.concat(bonuses))) {
+                    powerups[powerups.length - 1].remove();
+                    powerups.pop();
+                }
+            }
+            if (Math.random() < bonusChance && bonuses.length < 1) { // 最多只允許存在一個加分道具
+                createBonus();
+                // 檢查新創建的加分道具是否与其他道具重疊
+                if (checkItemOverlap(bonuses[bonuses.length - 1], obstacles.concat(powerups))) {
+                    bonuses[bonuses.length - 1].remove();
+                    bonuses.pop();
+                }
+            }
+
+            // 檢查障礙物是否越過
+            obstacles.forEach((obstacle, index) => {
+                if (checkObstaclePassed(obstacle)) {
+                    obstacles.splice(index, 1);
+                }
+            });
+
+            moveItems(obstacles);
+            moveItems(powerups);
+            moveItems(bonuses);
+            checkCollision();
+            speed += 0.002; // 遊戲進行中逐漸加速
+            requestAnimationFrame(gameLoop);
+        }
+    }
+
+    // 初始化遊戲
+    function startGame() {
+        score = 0;
+        speed = 2;
+        lives = 3;
+        gameRunning = true;
+        gameOverElement.style.display = 'none';
+        obstacles.forEach(obstacle => obstacle.remove());
+        powerups.forEach(powerup => powerup.remove());
+        bonuses.forEach(bonus => bonus.remove());
+        obstacles = [];
+        powerups = [];
+        bonuses = [];
+        runner.style.top = '60px'; // 重置角色位置
+        scoreElement.textContent = `score: ${score}`;
+        livesElement.textContent = `HP: ${lives}`;
+        gameLoop();
+        startScreen.style.display = 'none';
+    }
+
+    // 遊戲結束後重新開始
+    document.addEventListener('keydown', (event) => {
+        if (event.key === ' ' && !gameRunning) {
+            startGame();
+        }
+    });
+
+</script>
 </body>
 </html>
